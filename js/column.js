@@ -52,7 +52,7 @@ class Column extends HTMLElement {
 
         </style>
             <p>${this.title}</p>
-            <div id="card"></div>
+            <div class="card"></div>
         `;
 
         this.shadow.innerHTML = template;
