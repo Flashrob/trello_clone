@@ -4,10 +4,10 @@ Challenge is to **only** use web components aside from vanilla HTML,CSS,JS.
 
 ## Installation Guide
 
- 1. Install [JSON Server](https://github.com/typicode/json-server) for the API calls
- 2. Find the server directory inside /materials/db.json
- 3. run `json-server --watch db.json`
- 4. Navigate to "board.html" through a Chrome browser
+ 1. Install JSON Server via your Command Line Interface(CLI): `npm install -g json-server`
+ 2. Create a folder, navigate into it via CLI and run: `git clone https://github.com/Flashrob/trello_clone.git`
+ 3. Run `json-server --watch materials\db.json`
+ 4. Open the folder on your Windows/Mac and open the index.html via Chrome.
  5. Currently only can read (GET) and create (POST) columns while cards can only be read (GET)
 
 ## Structure of application
