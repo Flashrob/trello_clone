@@ -18,22 +18,40 @@ const getColumns = () => {
                 addButton.textContent = "+ Add Button"
 
                 addButton.addEventListener("click", (e) => {
-                    const column_id = e.target.id;
+                    const column_id = parseInt(e.target.id)+1;
                     const shadow = e.target.parentNode;
                     shadow.removeChild(e.target)
 
                     const form = document.createElement("form");
                     const input = document.createElement("input");
-                    const input_hidden = document.createElement("input");
-                    // input_hidden.setAttribute("name", column_id);
                     const button = document.createElement("button");
                     button.textContent = "Add";
                     form.appendChild(input);
                     form.appendChild(button);
-                    form.setAttribute("method", "POST");
-                    form.setAttribute("action", "http://localhost:3000/cards");
-                    form.setAttribute("onsubmit", "addCard()")
-                    // form.setAttribute("title", "title");
+                    form.setAttribute("name", "title")
+
+                    form.addEventListener("submit", (e)=>{
+
+                        e.preventDefault()
+
+                        let title = e.target.elements[0].value
+
+                        let addReq = new XMLHttpRequest;
+                        addReq.open("POST", "http://localhost:3000/cards", false);
+                        addReq.setRequestHeader("content-type", "application/json");
+
+                        const data = {
+                            "title": title,
+                            "column_id": column_id,
+                            "description": ""
+                        }
+                        
+                        addReq.send(JSON.stringify(data));
+
+                        getCards();
+
+                    })
+
                     column.shadowRoot.appendChild(form);
                 });
 
@@ -59,15 +77,13 @@ const getCards = () => {
             
             for(let i = 0; i < result.length; i++){
                 const column = document.querySelector(`#col${result[i].column_id}`);
+                
                 const div = column.shadowRoot.childNodes[5];
                 const card = document.createElement("card-display");
                 card.setAttribute("id", result[i].id);
                 card.setAttribute("title", result[i].title);
                 card.setAttribute("description", result[i].description);
                 div.appendChild(card);
-                const icon = document.createElement("i");
-                icon.className = "far fa-comment";
-                div.appendChild(icon);
             }
 
         }
@@ -83,8 +99,3 @@ const getCards = () => {
 
 getColumns();
 getCards();
-
-const addCard = (e) => {
-    e.preventDefault();
-    console.log("works")
-}
