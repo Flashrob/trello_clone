@@ -8,13 +8,19 @@ main {
     padding-top: 3%;
     display: flex;
     justify-content: left;
-    align-items: center;
 }
 
 column-display {
     width: 227px;
     margin: 20px;
+    margin-top: 10px;
     background-color: #ebecf0;
     color: #6a7d9e;
-    height: 500px;
+    height: max-content;
+}
+
+h1 {
+    padding-left: 4.5%;
+    color: white;
+    margin-bottom: 0;
 }

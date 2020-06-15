@@ -43,6 +43,9 @@
       "title": "Read Cards",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
       "column_id": 1
+    },
+    {
+      "id": 6
     }
   ]
 }

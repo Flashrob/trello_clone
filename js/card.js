@@ -28,6 +28,16 @@ class Card extends HTMLElement {
     render(){
         const template = 
         `
+        <style>
+        p {
+            padding: 10px 5px;
+            background-color: white;
+            margin: 20px;
+            box-shadow: 0 1px 0 rgba(9,30,66,.25);
+        }
+
+        
+        </style>
             <p>${this.title}</p>
         `;
 

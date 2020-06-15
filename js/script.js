@@ -10,6 +10,34 @@ const getColumns = () => {
                 column.setAttribute("id", `col${i+1}`);
                 column.setAttribute("title", result[i].title);
                 main.appendChild(column);
+
+                const addButton = document.createElement("h4");
+                addButton.className = "add-button";
+                addButton.id = i
+                addButton.className = `col${i+1}`
+                addButton.textContent = "+ Add Button"
+
+                addButton.addEventListener("click", (e) => {
+                    const column_id = e.target.id;
+                    const shadow = e.target.parentNode;
+                    shadow.removeChild(e.target)
+
+                    const form = document.createElement("form");
+                    const input = document.createElement("input");
+                    const input_hidden = document.createElement("input");
+                    // input_hidden.setAttribute("name", column_id);
+                    const button = document.createElement("button");
+                    button.textContent = "Add";
+                    form.appendChild(input);
+                    form.appendChild(button);
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "http://localhost:3000/cards");
+                    form.setAttribute("onsubmit", "addCard()")
+                    // form.setAttribute("title", "title");
+                    column.shadowRoot.appendChild(form);
+                });
+
+                column.shadowRoot.appendChild(addButton);
             }
             // console.log(document.querySelector("#col1"));
         }
@@ -37,7 +65,9 @@ const getCards = () => {
                 card.setAttribute("title", result[i].title);
                 card.setAttribute("description", result[i].description);
                 div.appendChild(card);
-                // console.log(column.shadowRoot.childNodes[5])
+                const icon = document.createElement("i");
+                icon.className = "far fa-comment";
+                div.appendChild(icon);
             }
 
         }
@@ -54,3 +84,7 @@ const getCards = () => {
 getColumns();
 getCards();
 
+const addCard = (e) => {
+    e.preventDefault();
+    console.log("works")
+}
