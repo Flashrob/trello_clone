@@ -6,11 +6,12 @@ const getColumns = () => {
             const main = document.querySelector("main");
 
             for(let i = 0; i < result.length; i++){
-                const div = document.createElement("div");
-                div.innerHTML = result[i].title;
-                main.appendChild(div);
+                const column = document.createElement("column-display");
+                column.setAttribute("id", `col${i+1}`);
+                column.setAttribute("title", result[i].title);
+                main.appendChild(column);
             }
-
+            // console.log(document.querySelector("#col1"));
         }
     }
 
@@ -19,7 +20,7 @@ const getColumns = () => {
     req.send();
 
     req.addEventListener("readystatechange", getResult, false);
-
+    
 }
 
 const getCards = () => {
@@ -27,7 +28,18 @@ const getCards = () => {
     const getResult = (e) =>{
         if(req.readyState == 4 && req.status == 200){
             const result = JSON.parse(req.responseText);
-            console.log(result)
+            
+            for(let i = 0; i < result.length; i++){
+                const column = document.querySelector(`#col${result[i].column_id}`);
+                const div = column.shadowRoot.childNodes[5];
+                const card = document.createElement("card-display");
+                card.setAttribute("id", result[i].id);
+                card.setAttribute("title", result[i].title);
+                card.setAttribute("description", result[i].description);
+                div.appendChild(card);
+                // console.log(column.shadowRoot.childNodes[5])
+            }
+
         }
     }
 
@@ -39,4 +51,6 @@ const getCards = () => {
 
 }
 
-getColumns()
+getColumns();
+getCards();
+

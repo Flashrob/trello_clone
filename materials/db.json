@@ -1,49 +1,48 @@
 {
-    "columns": [
-        {
-            "id": 1,
-            "title": "To do"
-        },
-        {
-            "id": 2,
-            "title": "In Progress"
-        },
-        {
-            "id": 3,
-            "title": "Done"
-        }
-    ],
-    "cards": [
-        {
-            "id": 1,
-            "title": "Read Columns",
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
-            "column_id": 2
-        },
-        {
-            "id": 2,
-            "title": "Create Cards",
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
-            "column_id": 2
-        },
-        {
-            "id": 3,
-            "title": "Create Columns",
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
-            "column_id": 2
-        },
-        {
-            "id": 4,
-            "title": "Initial Commit",
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
-            "column_id": 3
-        },
-        {
-            "id": 5,
-            "title": "Read Cards",
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
-            "column_id": 1
-        }
-    ]
-
+  "columns": [
+    {
+      "id": 1,
+      "title": "To do"
+    },
+    {
+      "id": 2,
+      "title": "In Progress"
+    },
+    {
+      "id": 3,
+      "title": "Done"
+    }
+  ],
+  "cards": [
+    {
+      "id": 1,
+      "title": "Read Columns",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
+      "column_id": 2
+    },
+    {
+      "id": 2,
+      "title": "Create Cards",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
+      "column_id": 2
+    },
+    {
+      "id": 3,
+      "title": "Create Columns",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
+      "column_id": 2
+    },
+    {
+      "id": 4,
+      "title": "Initial Commit",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
+      "column_id": 3
+    },
+    {
+      "id": 5,
+      "title": "Read Cards",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, vel deleniti voluptatem",
+      "column_id": 1
+    }
+  ]
 }

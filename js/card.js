@@ -1,4 +1,4 @@
-class Column extends HTMLElement {
+class Card extends HTMLElement {
 
     constructor() {
         super();
@@ -17,6 +17,10 @@ class Column extends HTMLElement {
         return this.getAttribute("title");
     }
 
+    get description(){
+        return this.getAttribute("description");
+    }
+
     connectedCallback() {
         this.render()
     }
@@ -24,17 +28,11 @@ class Column extends HTMLElement {
     render(){
         const template = 
         `
-        <style>
-        p {
-            display: flex;
-        }
-        </style>
             <p>${this.title}</p>
-            <div id="card"></div>
         `;
 
         this.shadow.innerHTML = template;
     }
 }
 
-window.customElements.define('column-display', Column);
+window.customElements.define('card-display', Card);
