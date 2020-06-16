@@ -1,4 +1,4 @@
-class Column extends HTMLElement {
+class AddColumn extends HTMLElement {
 
     constructor() {
         super();
@@ -32,23 +32,6 @@ class Column extends HTMLElement {
             padding-left: 20px;
             text-decoration: underline;
         }
-        
-        card-display {
-            margin: 10px 0;
-            background-color: #ebecf0;
-        }
-
-        h4 {
-            margin: 10px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 20px;
-            border-radius: 10px;
-        }
-
-        h4:hover {
-            background-color: #ccced8;
-        }
 
         input {
             width: 70%;
@@ -69,14 +52,16 @@ class Column extends HTMLElement {
             font-size: 13px;
             height: 25px;
         }
-
         </style>
-            <p>${this.title}</p>
-            <div class="card"></div>
+            <p>Add Column</p>
+            <form class="add-col">
+                <input type="text" required placeholder="Enter column title"/>
+                <button>ADD</button>
+            <form>
         `;
 
         this.shadow.innerHTML = template;
     }
 }
 
-window.customElements.define('column-display', Column);
+window.customElements.define('add-column', AddColumn);

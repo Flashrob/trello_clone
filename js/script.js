@@ -3,20 +3,13 @@ const getColumns = () => {
     let req = new XMLHttpRequest;
     req.open("GET", "http://localhost:3000/columns", true);
     req.send();
-    req.addEventListener("readystatechange", getResult, false);
-
-    //get request result
-    function getResult(e) {
-        if(req.readyState == 4 && req.status == 200){
-            const result = JSON.parse(req.responseText);
-            //render columns
-            createColumns(result);
-        }
-    }
+    req.addEventListener("readystatechange", createColumns, false);
 
     //render columns
-    function createColumns(result){
-        const main = document.querySelector("main");
+    function createColumns(){
+        if(req.readyState == 4 && req.status == 200){
+            const result = JSON.parse(req.responseText);
+            const main = document.querySelector("main");
         for(let i = 0; i < result.length; i++){
             //create column-display tags
             const column = document.createElement("column-display");
@@ -38,6 +31,9 @@ const getColumns = () => {
             //append button to column
             column.shadowRoot.appendChild(addButton);
         }
+            //column to add new column
+            addColumn();
+        }
     }
     
     //replace button with form input on click
@@ -51,7 +47,9 @@ const getColumns = () => {
         const form = document.createElement("form");
         const input = document.createElement("input");
         const button = document.createElement("button");
-        button.textContent = "Add";
+        input.placeholder = "Enter card title"
+        input.required = true;
+        button.textContent = "ADD";
         //append input/button to form
         form.appendChild(input);
         form.appendChild(button);
@@ -84,8 +82,46 @@ const getColumns = () => {
         addReq.send(JSON.stringify(data));
 
         //rerender page with new card
-        render()
+        //with timeout, there seems to be a problem with updating db.json fast enough
+        setTimeout(()=>{
+            render();
+        }, 50)
     }
+
+
+}
+
+const addColumn = () => {
+
+    const main = document.querySelector("main");
+    const addCard = document.createElement("add-column");
+    main.appendChild(addCard)
+    
+    //POST request for new column after submit
+    addCard.shadowRoot.childNodes[5].addEventListener("submit", (e) => {
+        e.preventDefault();
+        //input value
+        const title = e.target.elements[0].value
+
+        let req = new XMLHttpRequest;
+        req.open("POST", "http://localhost:3000/columns", true);
+        req.setRequestHeader("content-type", "application/json");
+
+        //column data
+        const data = {
+            "title": title
+        }
+
+        req.send(JSON.stringify(data));
+
+        //rerender page with new column
+        //with timeout, there seems to be a problem with updating db.json fast enough
+        setTimeout(()=>{
+            render();
+        }, 50)
+
+    })
+
 }
 
 
@@ -140,6 +176,8 @@ const getCards = () => {
         })
     }
 }
+
+
 
 const render = () => {
     const main = document.querySelector("main");

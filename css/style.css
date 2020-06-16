@@ -29,3 +29,17 @@ img {
     display: inline;
     color: red;
 }
+
+add-column {
+    width: 227px;
+    margin: 20px;
+    margin-top: 10px;
+    background-color: #ebecf0;
+    color: #6a7d9e;
+    height: 100px;
+    border-radius: 20px;
+}
+
+aside {
+    display: inline;
+}

@@ -23,7 +23,7 @@ Challenge is to **only** use web components aside from vanilla HTML,CSS,JS.
 ## MVP
 
  - [X] Read Columns
- - [ ] Create Columns
+ - [X] Create Columns
  - [ ] Update Columns
  - [ ] Delete Columns
  - [X] Read Cards
