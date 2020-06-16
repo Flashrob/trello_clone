@@ -55,3 +55,4 @@ Creating a Trello clone using only web components, vanilla HTML, CSS and JS, wit
  1. Deleting Columns. I had it implemented but had to remove the functionality, since I had trouble rerendering columns and cards. Would need to fix and refactor the way, that column and cards are assigned.
  2. Making the app more stable in regards to solid rendering.
  3. Drag and drop.
+ 4. Mobile responsiveness (Usually mobile first, but due to time constraint I focused on Desktop only)
