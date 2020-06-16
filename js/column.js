@@ -30,7 +30,7 @@ class Column extends HTMLElement {
             font-size: 20px;
             font-weight: 600;
             padding-left: 20px;
-            text-decoration: underline;
+            width: 100%;
         }
         
         card-display {
@@ -61,7 +61,7 @@ class Column extends HTMLElement {
             padding-left: 10px;
         }
 
-        button {
+        .add {
             background-color: green;
             color: white;
             border: none;
@@ -70,8 +70,18 @@ class Column extends HTMLElement {
             height: 25px;
         }
 
+        span {
+            position: relative;
+            bottom: 30px;
+            margin-left: auto;
+            margin-right: 10px;
+            background-color: #7bedff;
+            border-radius: 20px;
+            padding: 5px;
+        }
+
         </style>
-            <p>${this.title}</p>
+            <p><u>${this.title}</u><span class="delete" id="${this.id}">X</span></p>
             <div class="card"></div>
         `;
 

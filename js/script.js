@@ -10,10 +10,11 @@ const getColumns = () => {
         if(req.readyState == 4 && req.status == 200){
             const result = JSON.parse(req.responseText);
             const main = document.querySelector("main");
+
         for(let i = 0; i < result.length; i++){
             //create column-display tags
             const column = document.createElement("column-display");
-            column.setAttribute("id", `col${i+1}`);
+            column.setAttribute("id", `col${result[i].id}`);
             column.setAttribute("title", result[i].title);
             //append to main
             main.appendChild(column);
@@ -22,7 +23,7 @@ const getColumns = () => {
             const addButton = document.createElement("h4");
             addButton.className = "add-button";
             addButton.id = i
-            addButton.className = `col${i+1}`
+            addButton.className = `col${result[i].id}`
             addButton.textContent = "+ Add Card"
             //replace button with input on click
             addButton.addEventListener("click", (e) => {
@@ -30,11 +31,40 @@ const getColumns = () => {
             });
             //append button to column
             column.shadowRoot.appendChild(addButton);
+
+            //add delete column function to X button
+            const deleteButton = column.shadowRoot.childNodes[3].childNodes[1]
+            deleteButton.addEventListener("click", (e)=>{
+                deleteColumn(e, column);
+            })
         }
             //column to add new column
             addColumn();
         }
     }
+
+    function deleteColumn(e, column){
+        const cards = Array.from(column.shadow.childNodes[5].childNodes);
+
+        for(let i = 0; i < cards.length; i++){
+            //delete all cards in column
+            const card_id = cards[i].id
+            let req = new XMLHttpRequest;
+            req.open("DELETE", "http://localhost:3000/cards/"+card_id, true);
+            req.send();    
+        }
+
+        //delete column
+        const column_id = e.target.id[3];
+        let deleteReq = new XMLHttpRequest;
+        deleteReq.open("DELETE", "http://localhost:3000/columns/"+column_id, true);
+        deleteReq.send();
+        
+        setTimeout(()=>{
+            render();
+        }, 50)
+        
+}
     
     //replace button with form input on click
     function replaceButton(e, column){
@@ -50,6 +80,7 @@ const getColumns = () => {
         input.placeholder = "Enter card title"
         input.required = true;
         button.textContent = "ADD";
+        button.className = "add"
         //append input/button to form
         form.appendChild(input);
         form.appendChild(button);
@@ -124,7 +155,6 @@ const addColumn = () => {
 
 }
 
-
 const getCards = () => {
     //get request for cards
     let req = new XMLHttpRequest;
@@ -140,16 +170,19 @@ const getCards = () => {
             //create cards
             for(let i = 0; i < result.length; i++){
                 const column = document.querySelector(`#col${result[i].column_id}`);
-                const div = column.shadowRoot.childNodes[5];
-                const card = document.createElement("card-display");
-                card.setAttribute("id", result[i].id);
-                card.setAttribute("title", result[i].title);
-                card.setAttribute("description", result[i].description);
-                //append card
-                div.appendChild(card);
-                //click listener to delete a card
+                if(column){
+                    const div = column.shadowRoot.childNodes[5];
+                    const card = document.createElement("card-display");
+                    card.setAttribute("id", result[i].id);
+                    card.setAttribute("title", result[i].title);
+                    card.setAttribute("description", result[i].description);
+                    //append card
+                    div.appendChild(card);
+                    //click listener to delete a card
 
-                deleteCard(card, div);
+                    deleteCard(card, div);
+                }
+                
                 
                 
             }

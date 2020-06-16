@@ -49,7 +49,7 @@ class AddColumn extends HTMLElement {
             color: white;
             border: none;
             border-radius: 15px;
-            font-size: 13px;
+            font-size: 12px;
             height: 25px;
         }
         </style>
