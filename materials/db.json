@@ -1,16 +1,16 @@
 {
   "columns": [
     {
-      "id": 1,
-      "title": "To do"
+      "title": "To do",
+      "id": 1
     },
     {
-      "id": 2,
-      "title": "In Progress"
+      "title": "In Progress",
+      "id": 2
     },
     {
-      "id": 3,
-      "title": "Done"
+      "title": "Done",
+      "id": 3
     }
   ],
   "cards": [

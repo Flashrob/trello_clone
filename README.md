@@ -24,8 +24,8 @@ Challenge is to **only** use web components aside from vanilla HTML,CSS,JS.
 
  - [X] Read Columns
  - [X] Create Columns
- - [ ] Update Columns
- - [X] Delete Columns
+ - [X] Update Columns
+ - [ ] Delete Columns
  - [X] Read Cards
  - [X] Create Cards
  - [ ] Update Cards

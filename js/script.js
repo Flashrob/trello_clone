@@ -7,6 +7,7 @@ const getColumns = () => {
 
     //render columns
     function createColumns(){
+        //column to add new column
         if(req.readyState == 4 && req.status == 200){
             const result = JSON.parse(req.responseText);
             const main = document.querySelector("main");
@@ -32,39 +33,56 @@ const getColumns = () => {
             //append button to column
             column.shadowRoot.appendChild(addButton);
 
-            //add delete column function to X button
-            const deleteButton = column.shadowRoot.childNodes[3].childNodes[1]
-            deleteButton.addEventListener("click", (e)=>{
-                deleteColumn(e, column);
-            })
+            editColumn(column);            
         }
-            //column to add new column
-            addColumn();
+        addColumn();  
         }
+        
     }
 
-    function deleteColumn(e, column){
-        const cards = Array.from(column.shadow.childNodes[5].childNodes);
+    function editColumn(column){
+         //edit button
+         const editButton = column.shadowRoot.childNodes[3].childNodes[1];
+         editButton.addEventListener("click", (e)=>{
+             const title = column.shadowRoot.childNodes[3].childNodes[0].textContent
+             const column_id = column.id[3];
 
-        for(let i = 0; i < cards.length; i++){
-            //delete all cards in column
-            const card_id = cards[i].id
-            let req = new XMLHttpRequest;
-            req.open("DELETE", "http://localhost:3000/cards/"+card_id, true);
-            req.send();    
-        }
+             const u = column.shadowRoot.childNodes[3].childNodes[0];
+             const p = u.parentElement
+             p.removeChild(u)
+             p.removeChild(editButton)
+             const form = document.createElement("form");
+             const input = document.createElement("input");
+             input.value = title;
+             input.className = "edit-column"
+             input.placeholder = "Enter column title"
+             const button = document.createElement("button");
+             button.textContent = "EDIT"
+             button.className = "edit-button"
+             form.appendChild(input);
+             form.appendChild(button);
 
-        //delete column
-        const column_id = e.target.id[3];
-        let deleteReq = new XMLHttpRequest;
-        deleteReq.open("DELETE", "http://localhost:3000/columns/"+column_id, true);
-        deleteReq.send();
-        
-        setTimeout(()=>{
-            render();
-        }, 50)
-        
-}
+             form.addEventListener("submit", (e)=>{
+                 e.preventDefault();
+                 const title = e.target.elements[0].value
+                 
+                 let editReq = new XMLHttpRequest;
+                     editReq.open("PUT", "http://localhost:3000/columns/"+column_id, true);
+                     editReq.setRequestHeader("content-type", "application/json");
+
+                 const data = {
+                     title: title
+                 }
+                     editReq.send(JSON.stringify(data));
+
+                     setTimeout(()=>{
+                         render();
+                     }, 50)
+             })
+
+             p.prepend(form)
+         })
+    }
     
     //replace button with form input on click
     function replaceButton(e, column){
@@ -119,7 +137,7 @@ const getColumns = () => {
         }, 50)
     }
 
-
+   
 }
 
 const addColumn = () => {
@@ -202,7 +220,10 @@ const getCards = () => {
             req.addEventListener("readystatechange", function(){
 
                 if(req.readyState == 4 && req.status == 200){
-                    render();
+                    setTimeout(()=>{
+                        render();
+                    },50)
+                    
                 }
 
             }, false);
