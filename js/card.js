@@ -36,9 +36,18 @@ class Card extends HTMLElement {
             box-shadow: 0 1px 0 rgba(9,30,66,.25);
         }
 
+        button {
+            background-color: #ffb06d;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            float: right;
+            font-size: 10px;
+            height: 20px;
+        }
         
         </style>
-            <p>${this.title}</p>
+            <p>${this.title} <button id="card-${this.id}">DELETE</button></p>
         `;
 
         this.shadow.innerHTML = template;

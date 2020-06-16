@@ -40,7 +40,7 @@ const getColumns = () => {
         }
     }
     
-    //replace button with input on click
+    //replace button with form input on click
     function replaceButton(e, column){
         const column_id = parseInt(e.target.id)+1;
         //select card div
@@ -83,9 +83,7 @@ const getColumns = () => {
 
         addReq.send(JSON.stringify(data));
 
-        //reload page to display
-        //best way since the ajax requests don't seem to work well with json-server
-        // location.reload()
+        //rerender page with new card
         render()
     }
 }
@@ -96,12 +94,7 @@ const getCards = () => {
     let req = new XMLHttpRequest;
     req.open("GET", "http://localhost:3000/cards", true);
     req.send();
-    req.addEventListener("readystatechange", getResult, false);
-
-    //get request response
-    function getResult() {
-        createCards();
-    }
+    req.addEventListener("readystatechange", createCards, false);
 
     //render cards
     function createCards() {
@@ -118,8 +111,33 @@ const getCards = () => {
                 card.setAttribute("description", result[i].description);
                 //append card
                 div.appendChild(card);
+                //click listener to delete a card
+
+                deleteCard(card, div);
+                
+                
             }
         }
+    }
+
+    //delete request for single card
+    function deleteCard(card, div){
+
+        card.shadowRoot.childNodes[3].childNodes[1].addEventListener("click", function(e) {
+
+            const card_id = card.id
+            //delete request
+            let req = new XMLHttpRequest;
+            req.open("DELETE", "http://localhost:3000/cards/"+card_id, true);
+            req.send();
+            req.addEventListener("readystatechange", function(){
+
+                if(req.readyState == 4 && req.status == 200){
+                    render();
+                }
+
+            }, false);
+        })
     }
 }
 

@@ -24,3 +24,8 @@ h1 {
     color: white;
     margin-bottom: 0;
 }
+
+img {
+    display: inline;
+    color: red;
+}
