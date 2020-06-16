@@ -26,10 +26,18 @@ Creating a Trello clone using only web components, vanilla HTML, CSS and JS, wit
  - css
    - style.css
  - js
+   - components
+     - addColumn.js
+     - card.js
+     - column.js
+   - card-functions.js
+   - column-functions.js
    - script.js
  - materials
    - db.json 
- - index.html 
+   - db-backup.json
+ - index.html
+ - README.md
 
 ## MVP
 
