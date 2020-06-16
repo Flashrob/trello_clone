@@ -36,6 +36,10 @@ class Card extends HTMLElement {
             box-shadow: 0 1px 0 rgba(9,30,66,.25);
         }
 
+        p:hover {
+            background-color: #ccced8;
+        }
+
         button {
             background-color: #ffb06d;
             color: white;
@@ -44,6 +48,24 @@ class Card extends HTMLElement {
             float: right;
             font-size: 10px;
             height: 20px;
+            min-width: 50px;
+        }
+
+        button .edit-card {
+            margin-right: 20px;
+        }
+
+        input {
+            width: 60%;
+            
+            height: 20px;
+        }
+
+        div {
+            padding: 10px 5px;
+            background-color: white;
+            margin: 20px;
+            box-shadow: 0 1px 0 rgba(9,30,66,.25);
         }
         
         </style>

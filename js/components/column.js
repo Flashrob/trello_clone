@@ -94,7 +94,7 @@ class Column extends HTMLElement {
             cursor:pointer;
             color:#ffffff;
             font-family:Arial;
-            font-size:15px;
+            font-size:13px;
             font-weight:bold;
             padding:10px 13px;
             text-decoration:none;
@@ -122,7 +122,7 @@ class Column extends HTMLElement {
             cursor:pointer;
             color:#ffffff;
             font-family:Arial;
-            font-size:15px;
+            font-size:13px;
             font-weight:bold;
             padding:10px 13px;
             text-decoration:none;

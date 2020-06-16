@@ -44,3 +44,7 @@ aside {
     display: inline;
 }
 
+.edit-card {
+    margin-right: 20px;
+    float: none;
+}

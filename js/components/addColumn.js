@@ -52,6 +52,8 @@ class AddColumn extends HTMLElement {
             font-size: 12px;
             height: 25px;
         }
+
+
         </style>
             <p>Add Column</p>
             <form class="add-col">

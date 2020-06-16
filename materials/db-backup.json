@@ -1,7 +1,7 @@
 {
   "columns": [
     {
-      "title": "To dos",
+      "title": "To do",
       "id": 1
     },
     {
@@ -11,10 +11,6 @@
     {
       "title": "Done",
       "id": 3
-    },
-    {
-      "title": "stuff",
-      "id": 4
     }
   ],
   "cards": [
@@ -59,12 +55,6 @@
       "column_id": 2,
       "description": "",
       "id": 7
-    },
-    {
-      "title": "Hi",
-      "column_id": 2,
-      "description": "",
-      "id": 10
     }
   ]
 }
